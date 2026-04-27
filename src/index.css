@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #fefefe;
+    --bg-secondary: #ffffff;
+    --text-primary: #18181b;
+    --text-secondary: #525252;
+    --text-muted: #737373;
+    --border-subtle: #e5e5e5;
+    --card-bg: #ffffff;
+    --card-border: #e5e5e5;
+  }
+
+  .dark {
+    --bg-primary: #09090b;
+    --bg-secondary: #18181b;
+    --text-primary: #fafafa;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-subtle: #27272a;
+    --card-bg: #18181b;
+    --card-border: #27272a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-50 text-zinc-900 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .dark body {
+    @apply bg-zinc-950 text-zinc-100;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border bg-white shadow-sm transition-all duration-300;
+    border-color: var(--card-border);
+  }
+  
+  .card:hover {
+    @apply shadow-lg -translate-y-1;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-guinea-red px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-guinea-red/90 hover:shadow-lg active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border-2 border-guinea-red bg-transparent px-6 py-3 font-semibold text-guinea-red transition-all duration-300 hover:bg-guinea-red hover:text-white active:scale-95;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-green-600 hover:shadow-lg active:scale-95;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold text-zinc-900 dark:text-white;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-zinc-600 dark:text-zinc-400;
+  }
+
+  .guinea-flag {
+    @apply relative overflow-hidden rounded-lg;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm outline-none transition-all duration-300 focus:border-guinea-red focus:ring-2 focus:ring-guinea-red/20 dark:border-zinc-700 dark:bg-zinc-900;
+  }
+}
