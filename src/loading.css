@@ -1,0 +1,15 @@
+.loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #CE1126, #FCD116, #009E49);
+  z-index: 9999;
+  animation: loading 1s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% { width: 0%; opacity: 1; }
+  50% { width: 70%; opacity: 1; }
+  100% { width: 100%; opacity: 0; }
+}

@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import RootLayout from './components/layout/RootLayout'
-import WhatsAppButton from './components/ui/WhatsAppButton'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const HomePage = lazy(() => import('./pages/HomePage'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))
@@ -24,7 +24,7 @@ function LoadingSpinner() {
 
 export default function App() {
   return (
-    <>
+    <ErrorBoundary>
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={
@@ -64,6 +64,6 @@ export default function App() {
           } />
         </Route>
       </Routes>
-    </>
+    </ErrorBoundary>
   )
 }

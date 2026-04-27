@@ -4,34 +4,40 @@ import Header from './Header'
 import Footer from './Footer'
 import WhatsAppButton from '../ui/WhatsAppButton'
 import ScrollToTop from '../ui/ScrollToTop'
+import ThemeToggle from '../ui/ThemeToggle'
 
 export default function RootLayout() {
   const location = useLocation()
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const [displayLocation, setDisplayLocation] = useState(location)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    setIsLoading(true)
     setIsTransitioning(true)
+    
     const timer = setTimeout(() => {
-      setDisplayLocation(location)
       setIsTransitioning(false)
-    }, 150)
+      setIsLoading(false)
+    }, 300)
+    
     return () => clearTimeout(timer)
   }, [location.pathname])
 
   return (
     <div className="min-h-screen flex flex-col">
+      {isLoading && <div className="loading-bar" />}
       <Header />
       <main 
-        className={`flex-1 pt-16 transition-opacity duration-150 ${
+        className={`flex-1 pt-16 transition-opacity duration-200 ${
           isTransitioning ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        <Outlet context={{ currentPath: displayLocation.pathname }} />
+        <Outlet context={{ currentPath: location.pathname }} />
       </main>
       <Footer />
       <WhatsAppButton />
       <ScrollToTop />
+      <ThemeToggle />
     </div>
   )
 }
