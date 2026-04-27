@@ -39,6 +39,17 @@
   .dark body {
     @apply bg-zinc-950 text-zinc-100;
   }
+
+  /* Accessibilité : réduire les animations pour les utilisateurs qui le souhaitent */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 @layer components {
@@ -52,15 +63,15 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-guinea-red px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-guinea-red/90 hover:shadow-lg active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-guinea-red px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-guinea-red/90 hover:shadow-lg active:scale-95 focus:outline-none focus:ring-2 focus:ring-guinea-red focus:ring-offset-2 dark:focus:ring-offset-zinc-900;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border-2 border-guinea-red bg-transparent px-6 py-3 font-semibold text-guinea-red transition-all duration-300 hover:bg-guinea-red hover:text-white active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border-2 border-guinea-red bg-transparent px-6 py-3 font-semibold text-guinea-red transition-all duration-300 hover:bg-guinea-red hover:text-white active:scale-95 focus:outline-none focus:ring-2 focus:ring-guinea-red focus:ring-offset-2 dark:focus:ring-offset-zinc-900;
   }
 
   .btn-whatsapp {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-green-600 hover:shadow-lg active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-green-600 hover:shadow-lg active:scale-95 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900;
   }
 
   .section-title {
@@ -91,6 +102,22 @@
 
   .animate-slide-up {
     animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 
   @keyframes fadeIn {

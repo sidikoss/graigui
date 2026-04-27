@@ -1,9 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(
     () => document.documentElement.classList.contains('dark')
   )
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'))
+    })
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+    return () => observer.disconnect()
+  }, [])
 
   const toggleTheme = () => {
     document.documentElement.classList.toggle('dark')
@@ -15,8 +23,9 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-18 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-200 dark:bg-zinc-800 shadow-lg transition-all duration-300 hover:scale-110"
-      aria-label="Toggle dark mode"
+      className="fixed top-18 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-200 dark:bg-zinc-800 shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-guinea-red focus:ring-offset-2 dark:focus:ring-offset-zinc-900"
+      aria-label="Basculer le thème clair/sombre"
+      type="button"
     >
       {isDark ? (
         <svg className="h-5 w-5 text-guinea-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
