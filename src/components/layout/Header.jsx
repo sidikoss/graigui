@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import WhatsAppButton from '../ui/WhatsAppButton'
 
 const navLinks = [
   { path: '/', label: 'Accueil' },
@@ -43,7 +42,7 @@ export default function Header() {
   }
 
   return (
-    <>
+    <div>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md shadow-sm' 
@@ -139,8 +138,6 @@ export default function Header() {
           </div>
         )}
       </header>
-
-      <WhatsAppButton />
-    </>
+    </div>
   )
 }

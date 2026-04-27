@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { SEOHead, pageMeta } from '../components/seo/SEOMeta'
 
 export default function HomePage() {
@@ -49,9 +50,9 @@ export default function HomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </a>
-                <a href="/services" className="btn-secondary text-lg px-8 py-4">
+                <Link to="/services" className="btn-secondary text-lg px-8 py-4">
                   Voir nos produits
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -171,10 +172,10 @@ export default function HomePage() {
               Contactez-nous maintenant et recevez votre devis gratuit en moins de 24h.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <a href="/contact" className="rounded-xl bg-white px-6 py-3 font-bold text-guinea-red shadow-lg transition-all hover:bg-zinc-100">
+              <Link to="/contact" className="rounded-xl bg-white px-6 py-3 font-bold text-guinea-red shadow-lg transition-all hover:bg-zinc-100">
                 Demander un devis
-              </a>
-              <a href="https://wa.me/224661862044" className="rounded-xl bg-green-500 px-6 py-3 font-bold text-white shadow-lg transition-all hover:bg-green-600">
+              </Link>
+              <a href="https://wa.me/224661862044" target="_blank" rel="noopener noreferrer" className="rounded-xl bg-green-500 px-6 py-3 font-bold text-white shadow-lg transition-all hover:bg-green-600">
                 WhatsApp direct
               </a>
             </div>
