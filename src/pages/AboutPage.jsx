@@ -67,7 +67,7 @@ export default function AboutPage() {
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Après des mois de recherche et de développement, Craigui est né. Aujourd'hui, 
-              nous produisons des craies de qualité supérieure qui，满足 les normes internationales 
+              nous produisons des craies de qualité supérieure qui satisfont les normes internationales 
               tout en restant accessibles aux établissements guinéens.
             </p>
           </div>
