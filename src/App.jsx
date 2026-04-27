@@ -7,8 +7,11 @@ const HomePage = lazy(() => import('./pages/HomePage'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const BlogPage = lazy(() => import('./pages/BlogPage'))
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
 const LegalPage = lazy(() => import('./pages/LegalPage'))
+const ProductPage = lazy(() => import('./pages/ProductPage'))
+const AdminPage = lazy(() => import('./pages/AdminPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 function LoadingSpinner() {
@@ -47,6 +50,11 @@ export default function App() {
               <BlogPage />
             </Suspense>
           } />
+          <Route path="blog/:id" element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <BlogPostPage />
+            </Suspense>
+          } />
           <Route path="contact" element={
             <Suspense fallback={<LoadingSpinner />}>
               <ContactPage />
@@ -55,6 +63,16 @@ export default function App() {
           <Route path="legal/:type" element={
             <Suspense fallback={<LoadingSpinner />}>
               <LegalPage />
+            </Suspense>
+          } />
+          <Route path="product/:id" element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <ProductPage />
+            </Suspense>
+          } />
+          <Route path="admin" element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <AdminPage />
             </Suspense>
           } />
           <Route path="*" element={

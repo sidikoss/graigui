@@ -1,15 +1,8 @@
 import { SEOHead, pageMeta } from '../components/seo/SEOMeta'
 import { Link } from 'react-router-dom'
+import { posts } from '../data/posts'
 
-const articles = [
-  { id: 1, title: 'Guide Complet pour Choisir vos Craies Scolaires en Guinée', excerpt: 'Tout ce que vous devez savoir pour sélectionner les meilleures craies pour votre établissement.', category: 'Guide', readTime: '5 min', date: '15 Mars 2024' },
-  { id: 2, title: 'Pourquoi les Craies Importées ne Conviennent pas au Climat Guinéen', excerpt: 'Les spécificités du climat local exigent des craies adaptées. Découvrez pourquoi.', category: 'Astuces', readTime: '4 min', date: '8 Mars 2024' },
-  { id: 3, title: 'Comment Économiser sur vos Fournitures Scolaires en 2024', excerpt: 'Conseils pratiques pour réduire le budget fournitures sans compromettre la qualité.', category: 'Économie', readTime: '6 min', date: '1er Mars 2024' },
-  { id: 4, title: "L'Histoire de la Fabrication de Craies en Afrique de l'Ouest", excerpt: "Plongez dans l'histoire fascinante de la craie et son importance dans l'éducation.", category: 'Histoire', readTime: '8 min', date: '22 Février 2024' },
-  { id: 5, title: "Soutenir la Fabrication Locale : Pourquoi c'Est Important", excerpt: "Comment vos achats peuvent aider l'économie guinéenne et créer des emplois.", category: 'Économie', readTime: '4 min', date: '15 Février 2024' }
-]
-
-const categoryIcons = { Guide: '📚', Astuces: '💡', Économie: '💰', Histoire: '📖' }
+const categoryIcons = { Guide: '📚', Astuces: '💡', Économie: '💰', Histoire: '📖', Blanc: '⚪', Couleurs: '🌈', Premium: '💎', '🇬🇳': '🇬🇳', '🧹': '🧹' }
 
 export default function BlogPage() {
   const meta = pageMeta['/blog']
@@ -34,35 +27,35 @@ export default function BlogPage() {
         {/* Articles Grid */}
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {articles.map((article) => (
-              <article key={article.id} className="card overflow-hidden group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
-                <div className="h-48 bg-gradient-to-br from-guinea-red/20 via-guinea-yellow/20 to-guinea-green/20 flex items-center justify-center">
-                  <div className="text-6xl group-hover:scale-110 transition-transform duration-300">
-                    {categoryIcons[article.category]}
+            {posts.map((post) => (
+              <Link to={`/blog/${post.id}`} key={post.id}>
+                <article className="card overflow-hidden group h-full hover:-translate-y-1 transition-transform duration-300">
+                  <div className="h-48 bg-gradient-to-br from-guinea-red/20 via-guinea-yellow/20 to-guinea-green/20 flex items-center justify-center">
+                    <div className="text-6xl group-hover:scale-110 transition-transform duration-300">
+                      {post.image}
+                    </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-sm text-zinc-500 mb-3">
-                    <span className="px-2 py-1 rounded-full bg-guinea-red/10 text-guinea-red text-xs font-medium">
-                      {article.category}
-                    </span>
-                    <span>•</span>
-                    <span>{article.readTime}</span>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-sm text-zinc-500 mb-3">
+                      <span className="px-2 py-1 rounded-full bg-guinea-red/10 text-guinea-red text-xs font-medium">
+                        Actualités
+                      </span>
+                    </div>
+                    <h2 className="text-lg font-bold text-zinc-900 dark:text-white group-hover:text-guinea-red transition-colors">
+                      {post.title}
+                    </h2>
+                    <p className="mt-2 text-zinc-600 dark:text-zinc-400 text-sm">
+                      {post.excerpt}
+                    </p>
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="text-xs text-zinc-500">{post.date}</span>
+                      <span className="text-sm font-medium text-guinea-red group-hover:underline">
+                        Lire →
+                      </span>
+                    </div>
                   </div>
-                  <h2 className="text-lg font-bold text-zinc-900 dark:text-white group-hover:text-guinea-red transition-colors">
-                    {article.title}
-                  </h2>
-                  <p className="mt-2 text-zinc-600 dark:text-zinc-400 text-sm">
-                    {article.excerpt}
-                  </p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <span className="text-xs text-zinc-500">{article.date}</span>
-                    <span className="text-sm font-medium text-guinea-red group-hover:underline">
-                      Lire →
-                    </span>
-                  </div>
-                </div>
-              </article>
+                </article>
+              </Link>
             ))}
           </div>
         </section>

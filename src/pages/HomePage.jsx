@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { SEOHead, pageMeta } from '../components/seo/SEOMeta'
+import QuoteCalculator from '../components/QuoteCalculator'
 
 export default function HomePage() {
   const meta = pageMeta['/']
@@ -159,6 +160,35 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Quote Calculator */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mb-6">
+                Un devis clair, <span className="text-guinea-red">sans surprise</span>
+              </h2>
+              <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+                Parce que chaque école a des besoins différents, nous avons créé cet outil pour 
+                vous aider à estimer votre budget en quelques clics. 
+              </p>
+              <ul className="space-y-4">
+                {[
+                  'Tarifs dégressifs selon la quantité',
+                  'Frais de livraison calculés par zone',
+                  'Validation instantanée via WhatsApp',
+                  'Accompagnement personnalisé pour les gros volumes'
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-guinea-green/10 text-guinea-green">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <QuoteCalculator />
           </div>
         </section>
 
