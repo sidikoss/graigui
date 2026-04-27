@@ -1,3 +1,4 @@
+import { SEOHead, pageMeta } from '../components/seo/SEOMeta'
 import { Link } from 'react-router-dom'
 
 const products = [
@@ -63,32 +64,36 @@ const faq = [
 ]
 
 export default function ServicesPage() {
+  const meta = pageMeta['/services']
+  
   return (
-    <div className="space-y-20 py-12">
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-zinc-900 dark:text-white">
-            Des Craies qui Respectent Vos Élèves et Votre Budget
-          </h1>
-          <p className="mt-4 text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-            Chaque craie est fabriquée avec soin pour garantir qualité et durabilité. 
-            Découvrez notre gamme complète.
-          </p>
-        </div>
-      </section>
+    <>
+      <SEOHead {...meta} />
+      <div className="space-y-20 py-12">
+        {/* Header */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl font-extrabold text-zinc-900 dark:text-white">
+              Des Craies qui Respectent Vos Élèves et Votre Budget
+            </h1>
+            <p className="mt-4 text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+              Chaque craie est fabriquée avec soin pour garantir qualité et durabilité.
+            </p>
+          </div>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 md:grid-cols-2">
-          {products.map((product) => (
-            <div key={product.id} className="card overflow-hidden">
-              <div className={`h-48 ${product.color} flex items-center justify-center`}>
-                <div className="text-6xl">✏️</div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">{product.name}</h3>
-                <p className="mt-2 text-zinc-600 dark:text-zinc-400">{product.description}</p>
-                <div className="mt-4">
-                  <ul className="space-y-2">
+        {/* Products Grid */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 md:grid-cols-2">
+            {products.map((product) => (
+              <div key={product.id} className="card overflow-hidden group">
+                <div className={`h-48 ${product.color} flex items-center justify-center`}>
+                  <div className="text-6xl group-hover:scale-110 transition-transform duration-300">✏️</div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">{product.name}</h3>
+                  <p className="mt-2 text-zinc-600 dark:text-zinc-400">{product.description}</p>
+                  <ul className="mt-4 space-y-2">
                     {product.features.map((f, i) => (
                       <li key={i} className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300">
                         <svg className="h-4 w-4 text-guinea-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -98,132 +103,125 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-                </div>
-                <div className="mt-6 flex items-end justify-between">
-                  <div>
-                    <p className="text-2xl font-bold text-guinea-red">{product.price}</p>
-                    <p className="text-sm text-zinc-500">{product.priceNote}</p>
+                  <div className="mt-6 flex items-end justify-between">
+                    <div>
+                      <p className="text-2xl font-bold text-guinea-red">{product.price}</p>
+                      <p className="text-sm text-zinc-500">{product.priceNote}</p>
+                    </div>
+                    <Link to="/contact" className="btn-primary">
+                      Commander
+                    </Link>
                   </div>
-                  <Link to="/contact" className="btn-primary">
-                    Commander
-                  </Link>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-zinc-100 p-8 dark:bg-zinc-900">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
-              Grille Tarifaire — Prix GROS
-            </h2>
-            <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-              Commandez en grande quantité pour bénéficier de nos meilleurs tarifs
-            </p>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-zinc-300 dark:border-zinc-700">
-                  <th className="py-3 text-left text-sm font-semibold text-zinc-900 dark:text-white">Produit</th>
-                  <th className="py-3 text-center text-sm font-semibold text-zinc-900 dark:text-white">Prix unitaire</th>
-                  <th className="py-3 text-center text-sm font-semibold text-zinc-900 dark:text-white">Quantité min.</th>
-                  <th className="py-3 text-center text-sm font-semibold text-guinea-red">Prix GROS</th>
-                </tr>
-              </thead>
-              <tbody className="text-sm text-zinc-600 dark:text-zinc-400">
-                <tr className="border-b border-zinc-200 dark:border-zinc-800">
-                  <td className="py-3">Craies Blanches (paquet 50)</td>
-                  <td className="py-3 text-center">5 000 GNF</td>
-                  <td className="py-3 text-center">10 paquets</td>
-                  <td className="py-3 text-center font-bold text-guinea-green">40 000 GNF</td>
-                </tr>
-                <tr className="border-b border-zinc-200 dark:border-zinc-800">
-                  <td className="py-3">Craies Colorées (set 6)</td>
-                  <td className="py-3 text-center">12 000 GNF</td>
-                  <td className="py-3 text-center">5 sets</td>
-                  <td className="py-3 text-center font-bold text-guinea-green">50 000 GNF</td>
-                </tr>
-                <tr className="border-b border-zinc-200 dark:border-zinc-800">
-                  <td className="py-3">Craies Effaçables (paquet 24)</td>
-                  <td className="py-3 text-center">8 000 GNF</td>
-                  <td className="py-3 text-center">10 paquets</td>
-                  <td className="py-3 text-center font-bold text-guinea-green">65 000 GNF</td>
-                </tr>
-                <tr>
-                  <td className="py-3">Kit École Complet</td>
-                  <td className="py-3 text-center">45 000 GNF</td>
-                  <td className="py-3 text-center">3 kits</td>
-                  <td className="py-3 text-center font-bold text-guinea-green">120 000 GNF</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="mt-6 text-center">
-            <Link to="/contact" className="btn-primary">
-              Demander un devis personnalisé
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
-            Comment Commander ?
-          </h2>
-        </div>
-        <div className="grid gap-6 md:grid-cols-4">
-          {[
-            { step: 1, title: 'Contactez-nous', desc: 'Par WhatsApp, email ou formulaire' },
-            { step: 2, title: 'Recevez votre devis', desc: 'Sous 24h, avec les prix et délais' },
-            { step: 3, title: 'Confirmez la commande', desc: 'Validation et paiement' },
-            { step: 4, title: 'Livraison rapide', desc: 'Recevez vos craies en 48h' }
-          ].map((s, i) => (
-            <div key={i} className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-guinea-red text-xl font-bold text-white">
-                {s.step}
-              </div>
-              <h3 className="mt-4 font-bold text-zinc-900 dark:text-white">{s.title}</h3>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{s.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-zinc-200 p-8 dark:border-zinc-800">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white text-center mb-8">
-            Questions Fréquentes
-          </h2>
-          <div className="space-y-6">
-            {faq.map((item, i) => (
-              <div key={i} className="border-b border-zinc-200 pb-6 dark:border-zinc-800 last:border-0">
-                <h3 className="font-semibold text-zinc-900 dark:text-white">{item.q}</h3>
-                <p className="mt-2 text-zinc-600 dark:text-zinc-400">{item.a}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-guinea-green/10 p-8 text-center">
-          <h2 className="text-2xl font-bold text-guinea-green">
-            Garantie Qualité — Satisfait ou Remboursé
-          </h2>
-          <p className="mt-4 text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto">
-            Nous sommes tellement confiants en la qualité de nos craies que si vous n'êtes 
-            pas satisfait, nous vous remboursons. Pas de risque pour vous.
-          </p>
-          <Link to="/contact" className="mt-6 inline-flex btn-primary">
-            Commander sans risque
-          </Link>
-        </div>
-      </section>
-    </div>
+        {/* Pricing Table */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-zinc-100 p-8 dark:bg-zinc-900">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+                Grille Tarifaire — Prix GROS
+              </h2>
+              <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+                Commandez en grande quantité pour bénéficier de nos meilleurs tarifs
+              </p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-zinc-300 dark:border-zinc-700">
+                    <th className="py-3 text-left text-sm font-semibold text-zinc-900 dark:text-white">Produit</th>
+                    <th className="py-3 text-center text-sm font-semibold text-zinc-900 dark:text-white">Prix unitaire</th>
+                    <th className="py-3 text-center text-sm font-semibold text-zinc-900 dark:text-white">Quantité min.</th>
+                    <th className="py-3 text-center text-sm font-semibold text-guinea-red">Prix GROS</th>
+                  </tr>
+                </thead>
+                <tbody className="text-sm text-zinc-600 dark:text-zinc-400">
+                  {[
+                    ['Craies Blanches (paquet 50)', '5 000 GNF', '10 paquets', '40 000 GNF'],
+                    ['Craies Colorées (set 6)', '12 000 GNF', '5 sets', '50 000 GNF'],
+                    ['Craies Effaçables (paquet 24)', '8 000 GNF', '10 paquets', '65 000 GNF'],
+                    ['Kit École Complet', '45 000 GNF', '3 kits', '120 000 GNF']
+                  ].map((row, i) => (
+                    <tr key={i} className="border-b border-zinc-200 dark:border-zinc-800 last:border-0">
+                      <td className="py-3">{row[0]}</td>
+                      <td className="py-3 text-center">{row[1]}</td>
+                      <td className="py-3 text-center">{row[2]}</td>
+                      <td className="py-3 text-center font-bold text-guinea-green">{row[3]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-6 text-center">
+              <Link to="/contact" className="btn-primary">
+                Demander un devis personnalisé
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Process Steps */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+              Comment Commander ?
+            </h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-4">
+            {[
+              { step: 1, title: 'Contactez-nous', desc: 'Par WhatsApp, email ou formulaire' },
+              { step: 2, title: 'Recevez votre devis', desc: 'Sous 24h, avec les prix et délais' },
+              { step: 3, title: 'Confirmez la commande', desc: 'Validation et paiement' },
+              { step: 4, title: 'Livraison rapide', desc: 'Recevez vos craies en 48h' }
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-guinea-red text-xl font-bold text-white">
+                  {s.step}
+                </div>
+                <h3 className="mt-4 font-bold text-zinc-900 dark:text-white">{s.title}</h3>
+                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-zinc-200 p-8 dark:border-zinc-800">
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white text-center mb-8">
+              Questions Fréquentes
+            </h2>
+            <div className="space-y-6">
+              {faq.map((item, i) => (
+                <div key={i} className="border-b border-zinc-200 pb-6 dark:border-zinc-800 last:border-0 last:pb-0">
+                  <h3 className="font-semibold text-zinc-900 dark:text-white">{item.q}</h3>
+                  <p className="mt-2 text-zinc-600 dark:text-zinc-400">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Guarantee */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
+          <div className="rounded-2xl bg-guinea-green/10 p-8 text-center">
+            <h2 className="text-2xl font-bold text-guinea-green">
+              Garantie Qualité — Satisfait ou Remboursé
+            </h2>
+            <p className="mt-4 text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto">
+              Nous sommes tellement confiants en la qualité de nos craies que si vous n'êtes 
+              pas satisfait, nous vous remboursons. Pas de risque pour vous.
+            </p>
+            <Link to="/contact" className="mt-6 inline-flex btn-primary">
+              Commander sans risque
+            </Link>
+          </div>
+        </section>
+      </div>
+    </>
   )
 }
